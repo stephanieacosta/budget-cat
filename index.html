@@ -534,7 +534,12 @@ function render(){
     else if(ct==="donut"||ct==="pie"){
       const pie=ct==="pie",r=pie?10.5:15.9155,w=pie?21:5;
       const sel=ents.find(([c])=>+c===selC);
-      const arcs=ents.map(([c,v])=>{const q=v/tot*100,a=circ(r,w,viv(+c),Math.max(0,q-(pie?.3:.6)),off,`data-cat="${c}" style="cursor:pointer;${sel&&+c!==selC?"opacity:.28":""}"`);off+=q;return a}).join("");
+      const arcs=(()=>{const TAU=Math.PI*2,at=c=>`data-cat="${c}" style="cursor:pointer;${sel&&+c!==selC?"opacity:.28":""}"`;
+if(ents.length===1){const c=ents[0][0];return pie?`<circle cx="21" cy="21" r="21" fill="${viv(+c)}" ${at(c)}/>`:circ(r,w,viv(+c),100,0,at(c))}
+const gap=0,R=pie?21:r,P=a=>(21+R*Math.cos(a)).toFixed(3)+" "+(21+R*Math.sin(a)).toFixed(3);let ang=0;
+return ents.map(([c,v])=>{const sw=v/tot*TAU,g=Math.min(gap,sw*.5),a1=ang+g/2,a2=ang+sw-g/2+(sel||ang+sw>=TAU-.001?0:.004);ang+=sw;const big=a2-a1>Math.PI?1:0;
+const d=pie?`M21 21L${P(a1)}A${R} ${R} 0 ${big} 1 ${P(a2)}Z`:`M${P(a1)}A${R} ${R} 0 ${big} 1 ${P(a2)}`;
+return `<path d="${d}" fill="${pie?viv(+c):"none"}" stroke="${pie?"none":viv(+c)}" stroke-width="${pie?0:w}" ${at(c)}/>`}).join("")})();
       const nm=sel?cat(+sel[0]).e+" "+esc(catName(cat(+sel[0]))):"",pc=sel?Math.round(sel[1]/tot*100):0;
       h+=`<div class="dn"><svg viewBox="0 0 42 42">${pie?"":`<circle r="15.9155" cx="21" cy="21" fill="none" stroke="var(--pill)" stroke-width="5"/>`}${arcs}</svg>${pie?"":`<div><span>${sel?`${nm}<br><b>${money(sel[1])}</b><br><small>${pc}% · ${t("movs",cnt(+sel[0]))}</small>`:`<small>${sk==="g"?t("totSpent"):t("totInc")}</small><br><b>${money(tot)}</b>`}</span></div>`}</div>
       ${pie?`<div class="tipbox">${sel?`${nm} · <b>${money(sel[1])}</b><br><span style="color:var(--mu)">${pc}% · ${t("movs",cnt(+sel[0]))}</span>`:t("tapSlice")}</div>`:""}
