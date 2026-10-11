@@ -1,6 +1,6 @@
 {
-  "name": "budget",
-  "short_name": "budget",
+  "name": "Meowney",
+  "short_name": "Meowney",
   "description": "Control de gastos e ingresos",
   "start_url": "/",
   "scope": "/",

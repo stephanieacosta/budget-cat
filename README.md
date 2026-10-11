@@ -1,4 +1,4 @@
-# budget — control de gastos e ingresos 🐱
+# Meowney — control de gastos e ingresos 🐱
 
 App web estática (un solo `index.html`, sin build ni servidor). Se puede instalar en el celular desde el navegador y funciona sin internet.
 Trae dos temas, que se cambian en ⚙︎ Ajustes → **Tema**: **Gatitos 🐱** (el diseño kawaii) y **Clásico**.
@@ -55,5 +55,5 @@ Los datos viven en el navegador **de cada dirección web**, así que la app nuev
 ## Cosas a tener en cuenta
 - Los datos se guardan en `localStorage` del navegador: no se sincronizan entre dispositivos y se pierden si borras los datos del sitio. **Haz respaldos de vez en cuando.**
 - Si cambias la dirección (dominio) de la app, tendrás que exportar e importar de nuevo.
-- Para que todos los dispositivos descarguen una versión nueva tras una actualización, cambia `VERSION` en `sw.js` (por ejemplo a `budget-v3`).
+- Para que todos los dispositivos descarguen una versión nueva tras una actualización, cambia `VERSION` en `sw.js` (por ejemplo a `meowney-v3`).
 - Si el icono de la pestaña no cambia, recarga con Ctrl+F5: los navegadores guardan los iconos en caché.

@@ -1,6 +1,6 @@
 // Service worker: permite usar la app sin internet.
 // Para que todos los dispositivos descarguen una versión nueva tras actualizar, cambia el número de VERSION.
-const VERSION = "budget-v3";
+const VERSION = "meowney-v14";
 const CORE = ["/", "/index.html", "/manifest.webmanifest", "/icon-192.png", "/icon-512.png", "/favicon.svg", "/favicon-32.png"];
 
 self.addEventListener("install", e => {

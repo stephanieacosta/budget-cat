@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="color-scheme" content="light">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>budget</title>
+<title>Meowney</title>
 <meta name="theme-color" content="#ffffff">
 <meta name="description" content="Control de gastos e ingresos">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="budget">
+<meta name="apple-mobile-web-app-title" content="Meowney">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -17,7 +17,7 @@
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Playfair+Display&display=swap" rel="stylesheet">
-<script>try{var _s=JSON.parse(localStorage.getItem("bolsillo-v3")||"{}");if((_s.theme||"normal")==="cat")document.documentElement.classList.add("cat");if(_s.bg==="pink")document.documentElement.classList.add("bgpink");if(_s.ac==="blue")document.documentElement.classList.add("acblue");var _m=document.querySelector('meta[name="theme-color"]');if(_m)_m.content=(_s.theme||"normal")==="cat"?(_s.bg==="pink"?"#fff6f9":"#f4f9ff"):"#ffffff"}catch(e){}</script>
+<script>try{var _s=JSON.parse(localStorage.getItem("bolsillo-v3")||"{}"),_c=(_s.theme||"normal")==="cat",_k=_s.mode==="dark"||(_s.mode==="auto"&&matchMedia("(prefers-color-scheme: dark)").matches),_e=document.documentElement;if(_c)_e.classList.add("cat");if(_s.bg==="pink")_e.classList.add("bgpink");if(_s.ac==="blue")_e.classList.add("acblue");if(_k){_e.classList.add("dk");_e.style.colorScheme="dark";var _x=document.querySelector('meta[name="color-scheme"]');if(_x)_x.content="dark"}var _m=document.querySelector('meta[name="theme-color"]');if(_m)_m.content=_k?(_c?(_s.bg==="pink"?"#22121d":"#0e1a30"):"#111113"):(_c?(_s.bg==="pink"?"#fff6f9":"#f4f9ff"):"#ffffff")}catch(e){}</script>
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 --bg:#fff;--tx:#0d0d0d;--mu:#8e8e93;--ln:#ececec;--pill:#f1f1f1;--inc:#eefcf0;--inc2:#e2faea;--incx:#34c759;--exp:#fffbea;--card:#f9f9f9;--red:#ff453a}
@@ -109,13 +109,17 @@ dialog h3{margin:0 0 12px}.set{display:flex;justify-content:space-between;align-
 .emg{display:grid;grid-template-columns:repeat(8,1fr);gap:2px;max-height:176px;overflow:auto;margin:10px 0;border:1px solid var(--ln);border-radius:12px;padding:6px}
 .emg button{background:none;border:0;font-size:22px;padding:4px 0;border-radius:8px;cursor:pointer}.emg button:active{background:var(--pill)}
 .btn{width:100%;background:var(--tx);color:var(--bg);border:0;border-radius:14px;padding:13px;font-weight:600;cursor:pointer}
+.btn2{display:block;width:100%;margin-top:8px;background:#e4e4ea;color:var(--tx);border:0;border-bottom:4px solid rgba(0,0,0,.24);border-radius:14px;padding:12px 13px 9px;font-weight:600;cursor:pointer;transition:transform .08s,border-bottom-width .08s}
+.btn2:active{transform:translateY(3px);border-bottom-width:1px}
+#bk .btn{border-bottom:4px solid rgba(0,0,0,.28);padding:12px 13px 9px;transition:transform .08s,border-bottom-width .08s}
+#bk .btn:active{transform:translateY(3px);border-bottom-width:1px}
 #toast{position:fixed;inset:auto;left:50%;bottom:calc(104px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);margin:0;border:0;background:#111;color:#fff;padding:11px 18px;border-radius:99px;font-size:14px;max-width:88vw;text-align:center}
 
 /* ===== TEMA GATITOS: solo se aplica con <html class="cat"> ===== */
 html.cat{--paws:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cg fill='%23b8d4f5' fill-opacity='.32'%3E%3Cg transform='translate%2834 40%29 rotate%28-20%29'%3E%3Cellipse cx='0' cy='7' rx='8' ry='7'/%3E%3Ccircle cx='-10' cy='-3' r='3.6'/%3E%3Ccircle cx='-3.6' cy='-9.5' r='3.6'/%3E%3Ccircle cx='3.6' cy='-9.5' r='3.6'/%3E%3Ccircle cx='10' cy='-3' r='3.6'/%3E%3C/g%3E%3Cg transform='translate%28118 118%29 rotate%2818%29'%3E%3Cellipse cx='0' cy='7' rx='8' ry='7'/%3E%3Ccircle cx='-10' cy='-3' r='3.6'/%3E%3Ccircle cx='-3.6' cy='-9.5' r='3.6'/%3E%3Ccircle cx='3.6' cy='-9.5' r='3.6'/%3E%3Ccircle cx='10' cy='-3' r='3.6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");--bg:#f4f9ff;--tx:#4b3a4a;--mu:#a68f9d;--ln:#f6e3e9;--pill:#ffeaf0;--inc:#e9faf0;--inc2:#d7f5e2;--incx:#2fb36b;--exp:#fff4d4;--card:#fff;--red:#ff6b81;--pk:#ff8fab;--pk2:#ffb3c6}
 html.cat body{font-family:"Fredoka","Nunito",-apple-system,system-ui,"Segoe UI",Roboto,sans-serif;background-color:var(--bg);background-image:var(--paws);background-attachment:fixed}
 html.cat .logo{font-family:"Fredoka","Nunito",-apple-system,system-ui,sans-serif;font-weight:600;font-size:32px;letter-spacing:.5px;margin-left:0;background:linear-gradient(90deg,#ff7aa2,#b388ff);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
-html.cat .ico{color:#a0708a}
+html.cat .ico{color:#e5799f}
 html.cat .bal{font-weight:700;color:var(--tx)}
 html.cat .bal sup{color:var(--pk)}
 html.cat .pill{background-color:#fff0f5;border:1.5px solid #ffd3df;color:#a0708a}
@@ -161,6 +165,8 @@ html.cat .seg button.on{background:var(--pk);color:#fff}
 html.cat .grid button{border-radius:22px}
 html.cat .grid .more{border:2px dashed #ffc2d3;color:#c7a0b2;background:none}
 html.cat .btn{background:linear-gradient(135deg,#ffa3bd,#ff7aa2);color:#fff;border-radius:18px;box-shadow:0 8px 16px rgba(255,122,162,.30)}
+html.cat .btn2{background:#ffd9e5;color:#b03a63;border-radius:18px;border-bottom-color:#ec9ab6}
+html.cat #bk .btn{border-bottom-color:#e2587f}
 html.cat dialog{background:#fafcff;border-radius:28px}
 html.cat .sel,html.cat .inp2{background:#ffeaf0}
 html.cat #toast{background:#6b4a63}
@@ -235,6 +241,8 @@ html.cat.acblue .big{box-shadow:0 0 0 6px rgba(169,203,248,.22),0 14px 30px rgba
 html.cat.acblue .ht,html.cat.acblue .sel,html.cat.acblue .inp2{background:#e8f2ff}
 html.cat.acblue .grid .more{border-color:#bcd5f5;color:#94afd3}
 html.cat.acblue .btn{background:linear-gradient(135deg,#8dbcf7,#5f9cf0);box-shadow:0 8px 16px rgba(95,156,240,.30)}
+html.cat.acblue .btn2{background:#d3e6fe;color:#2f6bc4;border-bottom-color:#8fb9ee}
+html.cat.acblue #bk .btn{border-bottom-color:#3f7fd6}
 html.cat.acblue .np2{color:#6fa8f4;border-color:#d6e6fb;box-shadow:0 6px 18px rgba(127,178,245,.28)}
 html.cat.acblue :is(.ck,.sleepcat,.pe,.face,.ear) [fill="#ffc6d8"]{fill:#bcd8fa}
 html.cat.acblue :is(.ck,.sleepcat,.pe,.face,.ear) [fill="#ffa8c3"]{fill:#8fbaf0}
@@ -256,6 +264,54 @@ html.cat.acblue .av{background:#bcd8fa}
 html.cat.acblue .av::before,html.cat.acblue .av::after{border-bottom-color:#bcd8fa}
 .sitcat{display:none}
 html.cat .sitcat{display:block;position:absolute;left:calc(6px + (100% - 90px)/6 - 24px);bottom:calc(100% - 4px);width:48px;height:49px;pointer-events:none;z-index:6}
+
+/* ===== MODO OSCURO: clase html.dk (los selectores con :not(#z) ganan a los de cada theme) ===== */
+html.dk:not(#z){--bg:#111113;--tx:#f1f1f4;--mu:#9b9ba4;--ln:#2b2b31;--pill:#25252b;--inc:#13301e;--inc2:#194028;--incx:#4fd980;--exp:#352d14;--card:#1b1b1f;--red:#ff5a50}
+html.cat.dk:not(#z){--bg:#0e1a30;--tx:#e9f0fc;--mu:#8fa5c8;--ln:#27395f;--pill:#1c2f52;--inc:#123123;--inc2:#17402c;--incx:#4fd98a;--exp:#3a3216;--card:#162744;--red:#ff6b81;--paws:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cg fill='%23b8d4f5' fill-opacity='.07'%3E%3Cg transform='translate%2834 40%29 rotate%28-20%29'%3E%3Cellipse cx='0' cy='7' rx='8' ry='7'/%3E%3Ccircle cx='-10' cy='-3' r='3.6'/%3E%3Ccircle cx='-3.6' cy='-9.5' r='3.6'/%3E%3Ccircle cx='3.6' cy='-9.5' r='3.6'/%3E%3Ccircle cx='10' cy='-3' r='3.6'/%3E%3C/g%3E%3Cg transform='translate%28118 118%29 rotate%2818%29'%3E%3Cellipse cx='0' cy='7' rx='8' ry='7'/%3E%3Ccircle cx='-10' cy='-3' r='3.6'/%3E%3Ccircle cx='-3.6' cy='-9.5' r='3.6'/%3E%3Ccircle cx='3.6' cy='-9.5' r='3.6'/%3E%3Ccircle cx='10' cy='-3' r='3.6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+html.cat.bgpink.dk:not(#z){--bg:#22121d;--tx:#fdebf2;--mu:#caa0b4;--ln:#4a2a3c;--pill:#3a2030;--inc:#173022;--inc2:#1d3d2b;--incx:#4fd98a;--exp:#3b3017;--card:#2e1a28;--paws:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cg fill='%23ffc7d6' fill-opacity='.08'%3E%3Cg transform='translate%2834 40%29 rotate%28-20%29'%3E%3Cellipse cx='0' cy='7' rx='8' ry='7'/%3E%3Ccircle cx='-10' cy='-3' r='3.6'/%3E%3Ccircle cx='-3.6' cy='-9.5' r='3.6'/%3E%3Ccircle cx='3.6' cy='-9.5' r='3.6'/%3E%3Ccircle cx='10' cy='-3' r='3.6'/%3E%3C/g%3E%3Cg transform='translate%28118 118%29 rotate%2818%29'%3E%3Cellipse cx='0' cy='7' rx='8' ry='7'/%3E%3Ccircle cx='-10' cy='-3' r='3.6'/%3E%3Ccircle cx='-3.6' cy='-9.5' r='3.6'/%3E%3Ccircle cx='3.6' cy='-9.5' r='3.6'/%3E%3Ccircle cx='10' cy='-3' r='3.6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+html.dk:not(#z) .tot,html.dk:not(#z) .crow,html.dk:not(#z) .mvl,html.dk:not(#z) .grid button,html.dk:not(#z) .sum div,html.dk:not(#z) .cd,html.dk:not(#z) .yt,html.dk:not(#z) .cf{color:var(--tx)}
+html.dk:not(#z) .mvl small,html.dk:not(#z) .sum small,html.dk:not(#z) .bv em{color:var(--mu)}
+html.dk:not(#z) .pill{background-color:var(--pill);border-color:var(--ln);color:var(--mu)}
+html.dk:not(#z) .fade{background:linear-gradient(transparent,var(--bg) 62%)}
+html.dk:not(#z) .np,html.dk:not(#z) .np2{background:var(--card);border:1px solid var(--ln);box-shadow:0 4px 22px rgba(0,0,0,.45)}
+html.dk:not(#z) .np button{color:var(--mu)}
+html.dk:not(#z) .np button.on{background:var(--pill);color:var(--tx)}
+html.dk:not(#z) .np2{color:var(--tx)}
+html.cat.dk:not(#z) .np button.on,html.cat.dk:not(#z) .np2{color:var(--pk)}
+html.dk:not(#z) .x,html.dk:not(#z) .ico{color:var(--mu)}
+html.dk:not(#z) .mvl.cfm{background:#3a1d22!important}
+html.dk:not(#z) .cf{background:#3a1d22}
+html.dk:not(#z) .cb{background:var(--pill);color:var(--tx);box-shadow:none}
+html.dk:not(#z) .cb.red{background:var(--red);color:#fff}
+html.dk:not(#z) .chips2 button,html.dk:not(#z) .ctypes button,html.dk:not(#z) .ar{background:var(--pill);border-color:var(--ln);color:var(--mu)}
+html.dk:not(#z) .ar{color:var(--tx)}
+html.dk:not(#z) .chips2 button.on,html.dk:not(#z) .ctypes button.on{background:var(--tx);border-color:var(--tx);color:var(--bg)}
+html.cat.dk:not(#z) .chips2 button.on,html.cat.dk:not(#z) .ctypes button.on{background:var(--pk);border-color:var(--pk);color:#fff}
+html.dk:not(#z) .cd{background:var(--card)}
+html.dk:not(#z) .cd.e{background:none}
+html.dk:not(#z) .cd.rg{background:var(--pill)}
+html.dk:not(#z) .cd.on{background:var(--tx);color:var(--bg)}
+html.cat.dk:not(#z) .cd.on{background:var(--pk);color:#fff}
+html.dk:not(#z) .yt{background:var(--card);border-color:var(--ln)}
+html.dk:not(#z) .yt.on{box-shadow:inset 0 0 0 2px var(--tx)}
+html.cat.dk:not(#z) .yt.on{box-shadow:inset 0 0 0 2px var(--pk)}
+html.dk:not(#z) .tipbox,html.dk:not(#z) .stats3 div,html.dk:not(#z) .big{background:var(--card);border-color:var(--ln)}
+html.dk:not(#z) .ht{background:var(--pill)}
+html.dk:not(#z) .big{box-shadow:0 12px 30px rgba(0,0,0,.35)}
+html.cat.dk:not(#z) .big{box-shadow:0 0 0 6px rgba(255,143,171,.10),0 14px 30px rgba(0,0,0,.35)}
+html.cat.acblue.dk:not(#z) .big{box-shadow:0 0 0 6px rgba(111,168,244,.12),0 14px 30px rgba(0,0,0,.35)}
+html.dk:not(#z) .grid .more{border-color:var(--ln);color:var(--mu)}
+html.dk:not(#z) dialog{background:var(--card)}
+html.dk:not(#z) .sel,html.dk:not(#z) .inp2{background:var(--pill)}
+html.dk:not(#z) #toast{background:#3a3a42;color:#fff}
+html.cat.dk:not(#z) #toast{background:#6b4a63}
+html.dk:not(#z) .btn2{background:#2c2c32;color:var(--tx);border-bottom-color:rgba(0,0,0,.55)}
+html.cat.dk:not(#z) .btn2{background:#4d2b40;color:#ffc2d6;border-bottom-color:#2a1422}
+html.cat.acblue.dk:not(#z) .btn2{background:#24406e;color:#d3e5ff;border-bottom-color:#122445}
+html.dk:not(#z) #lgc{fill:var(--bg)}
+html.dk:not(#z) svg line[stroke="#e5e5e5"],html.dk:not(#z) svg line[stroke="#f0f0f0"]{stroke:var(--ln)}
+html.cat.dk:not(#z) .logo{color:#f3d6c2;-webkit-text-fill-color:#f3d6c2}
+html.cat.dk:not(#z) .ico{color:var(--pk)}
 </style>
 </head>
 <body>
@@ -308,7 +364,7 @@ es:{balance:"Balance",totals:"Totales",income:"Ingresos",expenses:"Gastos",categ
  bkTitle:"Respaldo",bkNoDl:"Este navegador no deja descargar el archivo. Copia este texto y guárdalo en una nota o en tu correo. Para recuperarlo, usa Importar y pégalo.",bkCopy:"Copiar respaldo",bkCopied:"¡Copiado! ✔",bkSel:"Selecciona el texto y cópialo",
  impTitle:"Importar respaldo",impHint:"Pega aquí el texto del respaldo o elige el archivo.",impPaste:"Pega el respaldo aquí",impBtn:"Importar texto pegado",impFile:"Elegir archivo…",replace:"Reemplazar",
  impConfirm:n=>"Esto reemplaza tus datos actuales por el respaldo ("+n+" movimientos). ¿Continuar?",impOk:"Respaldo importado ✔",impBad:"Ese texto o archivo no es un respaldo válido.",
- navHome:"Inicio",scrub:"Desliza o toca la gráfica",theme:"Tema",bg:"Fondo",ac:"Gatos e íconos",bgBlue:"Azul",bgPink:"Rosa",themeCat:"Gatitos 🐱",themeNormal:"Clásico",dlTitle:"Descargar respaldo",dlFile:"Archivo",dlSize:"Tamaño",dlContent:(m,c)=>m+" movimientos · "+c+" categorías",dlNote:"Si aceptas, se guardará en la carpeta de descargas de tu navegador.",dlGo:"Descargar",dlDeclined:"Descarga cancelada.",dlTried:"Descarga iniciada. Revisa tu carpeta de descargas; si no aparece, usa «Copiar respaldo» y guárdalo en una nota.",mRange:"Rango",rangeStart:"Toca el primer día del rango",rangeEnd:"Ahora toca el último día",lineHintM:"Gasto por mes",lineHintIM:"Ingreso por mes",avgMonth:"Promedio mensual",peakMonth:"Mes más alto",monthsYear:"Meses del año",avgDay:"Promedio diario",peakDay:"Día más alto",total:"Total",tapSlice:"Toca una porción o una categoría para ver el detalle",movs:n=>n+(n===1?" movimiento":" movimientos"),navList:"Movimientos",navStats:"Gráficas",add:"Añadir",colorAria:"Cambiar color"},
+ navHome:"Inicio",scrub:"Desliza o toca la gráfica",theme:"Tema",mode:"Modo",modeLight:"Claro",modeDark:"Oscuro",modeAuto:"Sistema",bg:"Fondo",ac:"Gatos e íconos",bgBlue:"Azul",bgPink:"Rosa",themeCat:"Gatitos 🐱",themeNormal:"Clásico",dlTitle:"Descargar respaldo",dlFile:"Archivo",dlSize:"Tamaño",dlContent:(m,c)=>m+" movimientos · "+c+" categorías",dlNote:"Si aceptas, se guardará en la carpeta de descargas de tu navegador.",dlGo:"Descargar",dlDeclined:"Descarga cancelada.",dlTried:"Descarga iniciada. Revisa tu carpeta de descargas; si no aparece, usa «Copiar respaldo» y guárdalo en una nota.",mRange:"Rango",rangeStart:"Toca el primer día del rango",rangeEnd:"Ahora toca el último día",lineHintM:"Gasto por mes",lineHintIM:"Ingreso por mes",avgMonth:"Promedio mensual",peakMonth:"Mes más alto",monthsYear:"Meses del año",avgDay:"Promedio diario",peakDay:"Día más alto",total:"Total",tapSlice:"Toca una porción o una categoría para ver el detalle",movs:n=>n+(n===1?" movimiento":" movimientos"),navList:"Movimientos",navStats:"Gráficas",add:"Añadir",colorAria:"Cambiar color"},
 en:{balance:"Balance",totals:"Totals",income:"Income",expenses:"Expenses",categories:"Categories",noExp:"No expenses in this period",budget:"Budget",left:"left",over:"over by",
  all:"All",noTx:"No transactions in this period.<br>Tap + to add one.",hint:"Tap a transaction to edit it",
  totSpent:"Total spent",totInc:"Total income",byCat:"By category",noInc:"No income in this period",
@@ -321,7 +377,7 @@ en:{balance:"Balance",totals:"Totals",income:"Income",expenses:"Expenses",catego
  bkTitle:"Backup",bkNoDl:"This browser can't download the file. Copy this text and save it in a note or an email. To restore it, use Import and paste it.",bkCopy:"Copy backup",bkCopied:"Copied! ✔",bkSel:"Select the text and copy it",
  impTitle:"Import backup",impHint:"Paste the backup text here or choose the file.",impPaste:"Paste the backup here",impBtn:"Import pasted text",impFile:"Choose file…",replace:"Replace",
  impConfirm:n=>"This replaces your current data with the backup ("+n+" transactions). Continue?",impOk:"Backup imported ✔",impBad:"That text or file is not a valid backup.",
- navHome:"Home",scrub:"Slide or tap the chart",theme:"Theme",bg:"Background",ac:"Cats & icons",bgBlue:"Blue",bgPink:"Pink",themeCat:"Cats 🐱",themeNormal:"Classic",dlTitle:"Download backup",dlFile:"File",dlSize:"Size",dlContent:(m,c)=>m+" transactions · "+c+" categories",dlNote:"If you accept, it will be saved to your browser's downloads folder.",dlGo:"Download",dlDeclined:"Download cancelled.",dlTried:"Download started. Check your downloads folder; if it doesn't show up, use “Copy backup” and save it in a note.",mRange:"Range",rangeStart:"Tap the first day of the range",rangeEnd:"Now tap the last day",lineHintM:"Spending by month",lineHintIM:"Income by month",avgMonth:"Monthly average",peakMonth:"Peak month",monthsYear:"Months of the year",avgDay:"Daily average",peakDay:"Peak day",total:"Total",tapSlice:"Tap a slice or a category for details",movs:n=>n+(n===1?" transaction":" transactions"),navList:"Transactions",navStats:"Charts",add:"Add",colorAria:"Change color"}};
+ navHome:"Home",scrub:"Slide or tap the chart",theme:"Theme",mode:"Mode",modeLight:"Light",modeDark:"Dark",modeAuto:"System",bg:"Background",ac:"Cats & icons",bgBlue:"Blue",bgPink:"Pink",themeCat:"Cats 🐱",themeNormal:"Classic",dlTitle:"Download backup",dlFile:"File",dlSize:"Size",dlContent:(m,c)=>m+" transactions · "+c+" categories",dlNote:"If you accept, it will be saved to your browser's downloads folder.",dlGo:"Download",dlDeclined:"Download cancelled.",dlTried:"Download started. Check your downloads folder; if it doesn't show up, use “Copy backup” and save it in a note.",mRange:"Range",rangeStart:"Tap the first day of the range",rangeEnd:"Now tap the last day",lineHintM:"Spending by month",lineHintIM:"Income by month",avgMonth:"Monthly average",peakMonth:"Peak month",monthsYear:"Months of the year",avgDay:"Daily average",peakDay:"Peak day",total:"Total",tapSlice:"Tap a slice or a category for details",movs:n=>n+(n===1?" transaction":" transactions"),navList:"Transactions",navStats:"Charts",add:"Add",colorAria:"Change color"}};
 
 const CURS=["COP","USD","EUR","MXN","ARS","PEN","BRL","CLP"],SYM={COP:"$",USD:"$",EUR:"€",MXN:"$",ARS:"$",PEN:"S/",BRL:"R$",CLP:"$"};
 const PAL=["#f3effe","#fdefe2","#e3f1fd","#fde8f1","#e6f8ee","#fff6d6","#ffe6e1","#eaf7d6","#dff7f6","#f1e4fb","#f6eee0","#e7ebfd","#fde4e8","#e2f0e8"];
@@ -336,6 +392,7 @@ const save=()=>{try{localStorage.setItem("bolsillo-v3",JSON.stringify(S))}catch(
 if(!S.theme)S.theme="normal";
 if(!S.bg)S.bg="blue";
 if(!S.ac)S.ac="pink";
+if(!["light","dark","auto"].includes(S.mode))S.mode="light";
 S.cats.forEach(c=>{if(!c.t)c.t="g"});
 if(!S.cats.some(c=>c.t==="i"))S.cats.push(...[["💼","Salario"],["💻","Freelance"],["🎁","Regalo"],["📈","Inversiones"],["💰","Otros ingresos"]].map((c,i)=>({id:101+i,e:c[0],n:c[1],t:"i"})));
 function assignK(){const used=new Set(S.cats.map(c=>c.k).filter(k=>k!=null));S.cats.forEach((c,ix)=>{if(c.k==null){let i=0;while(used.has(i)&&i<PAL.length)i++;c.k=i<PAL.length?i:ix%PAL.length;used.add(c.k)}})}
@@ -355,7 +412,9 @@ const iso=d=>{const z=new Date(d);return z.getFullYear()+"-"+String(z.getMonth()
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const cat=id=>S.cats.find(c=>c.id===id)||{e:"📦",n:t("noCat"),t:"g"};
 const catName=c=>en()&&DEF[c.n]?DEF[c.n]:c.n;
-const col=id=>PAL[(cat(id).k||0)%PAL.length],viv=id=>VIV[(cat(id).k||0)%VIV.length];
+const isDark=()=>S.mode==="dark"||(S.mode==="auto"&&matchMedia("(prefers-color-scheme: dark)").matches);
+const palC=k=>isDark()?VIV[k%VIV.length]+"40":PAL[k%PAL.length];
+const col=id=>palC(cat(id).k||0),viv=id=>VIV[(cat(id).k||0)%VIV.length];
 const TODAY=iso(new Date());
 let M=TODAY.slice(0,7),kind="g",tab="home",lf="all",sk="g",ct="donut",lm="m",selDay=TODAY,delId=null,editId=null,selCat=null,delConf=false,budEdit=false,delCatId=null,selC=null,selMi=null,LD=null,rFrom=null,rTo=null,rA=null;
 const padN=n=>String(n).padStart(2,"0");
@@ -392,15 +451,18 @@ function applyTheme(){
   document.documentElement.classList.toggle("cat",S.theme==="cat");
   document.documentElement.classList.toggle("bgpink",S.bg==="pink");
   document.documentElement.classList.toggle("acblue",S.ac==="blue");
-  const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.content=S.theme==="cat"?(S.bg==="pink"?"#fff6f9":"#f4f9ff"):"#ffffff";
+  const dk=isDark(),cc=S.theme==="cat",pk=S.bg==="pink";
+  document.documentElement.classList.toggle("dk",dk);document.documentElement.style.colorScheme=dk?"dark":"light";
+  const cs=document.querySelector('meta[name="color-scheme"]');if(cs)cs.content=dk?"dark":"light";
+  const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.content=dk?(cc?(pk?"#22121d":"#0e1a30"):"#111113"):(cc?(pk?"#fff6f9":"#f4f9ff"):"#ffffff");
   $("plus").innerHTML=S.theme==="cat"?PLUS_CAT:"+";
 }
 const ttl=()=>{
   const ear=c=>`<svg class="ear ${c}" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21.5C3 15.5 6 9.5 9.6 7.2Q12 5.6 14.4 7.2C18 9.5 21 15.5 21 21.5Z" fill="#ff9db8" stroke="#ff9db8" stroke-width="3.4" stroke-linejoin="round"/><path d="M7.6 20C7.4 16.4 9.2 13.2 10.9 11.6Q12 10.8 13.1 11.6C14.8 13.2 16.6 16.4 16.4 20Z" fill="#ffe3ec" stroke="#ffe3ec" stroke-width="1.8" stroke-linejoin="round"/></svg>`;
   const wh=c=>`<svg class="wh ${c}" viewBox="0 0 30 26" aria-hidden="true"><path d="M29 11 3 4M29 13.5 1 13.5M29 16 3 23" stroke="#8b5e46" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg>`;
-  return `<span class="lt">${ear("l")}${ear("r")}${wh("l")}${wh("r")}budget</span>`;
+  return `<span class="lt">${ear("l")}${ear("r")}${wh("l")}${wh("r")}Meowney</span>`;
 };
-const head=()=>`<div class="top">${S.theme==="cat"?`<span style="width:36px;height:36px;display:grid;place-items:center">${catSvg(34,"happy")}</span><div class="logo">${ttl()}</div>`:`<span style="width:36px"></span><div class="logo">budget</div>`}<button class="ico" id="gear" aria-label="${t("settings")}">⚙︎</button></div>`;
+const head=()=>`<div class="top">${S.theme==="cat"?`<span style="width:36px;height:36px;display:grid;place-items:center">${catSvg(34,"happy")}</span><div class="logo">${ttl()}</div>`:`<span style="width:36px"></span><div class="logo">Meowney</div>`}<button class="ico" id="gear" aria-label="${t("settings")}">⚙︎</button></div>`;
 const crow=(c,v,k,inc)=>`<div class="crow"><i style="width:${Math.max(30,100-k*23.3)}%;background:${col(+c)}"></i><div><span>${cat(+c).e} ${esc(catName(cat(+c)))}</span><b>${inc?"+":""}${money(v)}</b></div></div>`;
 const circ=(r,w,color,a,off,x="")=>`<circle r="${r}" cx="21" cy="21" fill="none" stroke="${color}" stroke-width="${w}" pathLength="100" stroke-dasharray="${a} ${100-a}" stroke-dashoffset="${-off}" ${x}/>`;
 function scrub(i){
@@ -599,7 +661,7 @@ $("per").onclick=e=>{
 
 /* ---------- añadir / editar movimiento ---------- */
 function grid(){
-  $("grid").innerHTML=S.cats.filter(c=>c.t===kind).map(c=>`<button data-c="${c.id}" style="background:${PAL[(c.k||0)%PAL.length]};${editId!==null&&selCat===c.id?"box-shadow:inset 0 0 0 2.5px #111":""}"><span>${c.e}</span>${esc(catName(c))}</button>`).join("")+`<button class="more" id="nc"><span>＋</span>${t("new")}</button>`;
+  $("grid").innerHTML=S.cats.filter(c=>c.t===kind).map(c=>`<button data-c="${c.id}" style="background:${palC(c.k||0)};${editId!==null&&selCat===c.id?"box-shadow:inset 0 0 0 2.5px var(--tx)":""}"><span>${c.e}</span>${esc(catName(c))}</button>`).join("")+`<button class="more" id="nc"><span>＋</span>${t("new")}</button>`;
 }
 function mark(){[...$("tp").children].forEach(b=>b.classList.toggle("on",b.dataset.k===kind))}
 function upd(){
@@ -659,7 +721,7 @@ function openCat(type,id,cb){
   <div style="display:flex;gap:8px"><input class="inp2" id="ne" maxlength="8" placeholder="😀" value="${ed?esc(ed.e):""}" style="font-size:28px;text-align:center;width:76px"><input class="inp2" id="nn" placeholder="${t("name")}" maxlength="20" value="${ed?esc(catName(ed)):""}" style="flex:1;min-width:0"></div>
   <div style="font-size:12px;color:var(--mu);margin:10px 2px 0">${t("pickEmoji")}</div>
   <div class="emg">${EMOJIS.map(x=>`<button data-e="${x}">${x}</button>`).join("")}</div>
-  <div class="chips">${PAL.map((c,i)=>`<button class="sw" data-k="${i}" style="background:${c};${i===selK?"box-shadow:0 0 0 2.5px #111":""}"></button>`).join("")}</div>
+  <div class="chips">${PAL.map((c,i)=>`<button class="sw" data-k="${i}" style="background:${palC(i)};${i===selK?"box-shadow:0 0 0 2.5px var(--tx)":""}"></button>`).join("")}</div>
   <button class="btn" id="nsv">${t("save")}</button>
   <div id="ndw">${ed?dw():""}</div>
   <button class="lnk" id="nx" style="width:100%;margin-top:4px;color:var(--mu)">${t("cancel")}</button>`;
@@ -688,7 +750,7 @@ function catSec(ty,ti){return `<div class="set" style="border:0;margin-top:6px">
 
 /* ---------- respaldo ---------- */
 function applyImport(d){
-  S=Object.assign({cur:"COP",lang:S.lang,theme:S.theme,bg:S.bg,ac:S.ac,budget:0,carry:true},d);
+  S=Object.assign({cur:"COP",lang:S.lang,mode:S.mode,theme:S.theme,bg:S.bg,ac:S.ac,budget:0,carry:true},d);
   S.tx=S.tx.filter(x=>x&&x.amt>0&&typeof x.date==="string");
   S.cats.forEach(c=>{if(!c.t)c.t="g"});assignK();
   save();applyStatic();applyTheme();render();if($("bk").open)$("bk").close();if($("set").open)$("set").close();flash(t("impOk"));
@@ -700,7 +762,7 @@ function stageImport(txt){
     pend=d;w.innerHTML=`<div class="cf"><div>${t("impConfirm",d.tx.length)}</div><div class="cfb"><button class="cb" id="bn">${t("cancel")}</button><button class="cb red" id="by">${t("replace")}</button></div></div>`;
   }catch(err){pend=null;w.innerHTML=`<div class="cf"><div>${t("impBad")}</div></div>`}
 }
-const bkName=()=>"budget-backup-"+iso(new Date())+".json";
+const bkName=()=>"meowney-backup-"+iso(new Date())+".json";
 const fmtSize=n=>n<1024?n+" B":(n/1024).toFixed(1).replace(".",DC())+" KB";
 function exportHtml(json){
   const n=new Blob([json]).size;
@@ -710,8 +772,8 @@ function exportHtml(json){
   <textarea class="inp2" id="bt" readonly style="width:100%;height:80px;font-size:11px">${esc(json)}</textarea>
   <div id="bmsg2" style="font-size:12.5px;color:var(--mu);margin:8px 2px 0"></div>
   <button class="btn" id="bdl" style="margin-top:10px">${t("dlGo")}</button>
-  <button class="lnk" id="bc" style="width:100%;margin-top:6px">${t("bkCopy")}</button>
-  <button class="lnk" id="bz" style="width:100%;color:var(--mu)">${t("cancel")}</button>`;
+  <button class="btn2" id="bc">${t("bkCopy")}</button>
+  <button class="btn2 mu" id="bz">${t("cancel")}</button>`;
 }
 async function doDownload(json,fn){
   try{const b=new Blob([json],{type:"application/json"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download=fn;a.rel="noopener";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);return "anchor"}catch(e){return "fail"}
@@ -719,7 +781,7 @@ async function doDownload(json,fn){
 function openBk(m,json){
   const x=m==="x";
   $("bk").innerHTML=x?exportHtml(json)
-  :`<h3>${t("impTitle")}</h3><p style="font-size:13px;color:var(--mu);margin:0 0 8px">${t("impHint")}</p><textarea class="inp2" id="bt" placeholder="${t("impPaste")}" style="width:100%;height:130px;font-size:11px"></textarea><div id="bmsg"></div><button class="btn" id="bg" style="margin-top:10px">${t("impBtn")}</button><button class="lnk" id="bfile" style="width:100%;margin-top:6px">${t("impFile")}</button><button class="lnk" id="bz" style="width:100%">${t("cancel")}</button>`;
+  :`<h3>${t("impTitle")}</h3><p style="font-size:13px;color:var(--mu);margin:0 0 8px">${t("impHint")}</p><textarea class="inp2" id="bt" placeholder="${t("impPaste")}" style="width:100%;height:130px;font-size:11px"></textarea><div id="bmsg"></div><button class="btn" id="bg" style="margin-top:10px">${t("impBtn")}</button><button class="btn2" id="bfile">${t("impFile")}</button><button class="btn2 mu" id="bz">${t("cancel")}</button>`;
   $("bk").onclick=async e=>{
     const y=e.target;
     if(y===$("bk")||y.id==="bz")return $("bk").close();
@@ -739,6 +801,7 @@ $("bf").onchange=async e=>{const f=e.target.files[0];e.target.value="";if(!f)ret
 function openSet(){
   $("set").innerHTML=`<h3>${t("settings")}</h3>
   <div class="set"><span>${t("lang")}</span><select class="sel" id="sl"><option value="es" ${S.lang==="es"?"selected":""}>Español</option><option value="en" ${S.lang==="en"?"selected":""}>English</option></select></div>
+  <div class="set"><span>${t("mode")}</span><select class="sel" id="smd"><option value="light" ${S.mode==="light"?"selected":""}>${t("modeLight")}</option><option value="dark" ${S.mode==="dark"?"selected":""}>${t("modeDark")}</option><option value="auto" ${S.mode==="auto"?"selected":""}>${t("modeAuto")}</option></select></div>
   <div class="set"><span>${t("theme")}</span><select class="sel" id="stm"><option value="cat" ${S.theme==="cat"?"selected":""}>${t("themeCat")}</option><option value="normal" ${S.theme==="normal"?"selected":""}>${t("themeNormal")}</option></select></div>
   ${S.theme==="cat"?`<div class="set"><span>${t("bg")}</span><select class="sel" id="sbg"><option value="blue" ${S.bg!=="pink"?"selected":""}>${t("bgBlue")}</option><option value="pink" ${S.bg==="pink"?"selected":""}>${t("bgPink")}</option></select></div>`:""}
   ${S.theme==="cat"?`<div class="set"><span>${t("ac")}</span><select class="sel" id="sac"><option value="pink" ${S.ac!=="blue"?"selected":""}>${t("bgPink")}</option><option value="blue" ${S.ac==="blue"?"selected":""}>${t("bgBlue")}</option></select></div>`:""}
@@ -772,6 +835,7 @@ $("set").onclick=e=>{
 $("set").oninput=e=>{if(e.target.id==="bin")e.target.value=fmtAmt(e.target.value)};
 $("set").onchange=e=>{
   if(e.target.id==="sl"){S.lang=e.target.value;applyStatic();renderDel()}
+  else if(e.target.id==="smd"){S.mode=e.target.value;applyTheme()}
   else if(e.target.id==="stm"){S.theme=e.target.value;applyTheme()}
   else if(e.target.id==="sbg"){S.bg=e.target.value;applyTheme()}
   else if(e.target.id==="sac"){S.ac=e.target.value;applyTheme()}
@@ -781,6 +845,7 @@ $("set").onchange=e=>{
   save();render();openSet();
 };
 $("set").addEventListener("close",()=>{budEdit=false;delCatId=null});
+try{matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(S.mode==="auto"){applyTheme();render()}})}catch(e){}
 applyTheme();applyStatic();renderDel();render();
 if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));
 </script>
