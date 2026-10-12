@@ -498,7 +498,7 @@ function render(){
   const by=k=>{const o={};tx.filter(x=>x.t===k&&inM(x)).forEach(x=>o[x.cat]=(o[x.cat]||0)+x.amt);return Object.entries(o).sort((a,b)=>b[1]-a[1])};
   let h=head();
   if(tab==="home"){
-    const bal=S.carry?sum("i",x=>x.date<=end)-sum("g",x=>x.date<=end):inc-exp;
+    const bal=S.carry&&lm==="m"?sum("i",x=>x.date<=end)-sum("g",x=>x.date<=end):inc-exp;
     const ents=by("g"),p=S.budget>0?Math.min(100,exp/S.budget*100):0;
     h+=`<div class="balw"><div class="bal">${bigm(bal)}</div><small>${t("balance")}</small>${pillH()}</div>
     <div class="lab">${t("totals")}</div>
