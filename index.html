@@ -52,9 +52,10 @@ button,input,select,textarea{font:inherit;color:inherit}
 .mvl{display:flex;align-items:center;gap:12px;border-radius:18px;padding:0 10px 0 14px;min-height:58px;margin-bottom:8px;color:#111;cursor:pointer}
 .mvl .e{font-size:22px}.mvl .g{flex:1;min-width:0;font-size:16px;font-weight:500}.mvl small{display:block;color:#777;font-size:12px;font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mvl b{font-size:17px}.x{background:none;border:0;color:#9a9a9a;font-size:16px;cursor:pointer;padding:6px}
-.mvl.cfm{background:#fdecea!important;cursor:default;padding:10px 12px;flex-wrap:wrap;justify-content:space-between}
+.mvl.cfm{border:2px solid var(--red);cursor:default;padding:8px 10px;flex-wrap:wrap;justify-content:space-between}
 .mvl.cfm .g{font-size:14px;min-width:150px}
-.cf{background:#fdecea;border-radius:16px;padding:12px 14px;margin-top:10px;font-size:14px;color:#111;text-align:left}
+.cf.rw{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}.cf.rw .cfb{margin-top:0}.cf.rw .cfb,.mvl.cfm>span:last-child{margin-left:auto}
+.cf{background:var(--card);border:2px solid var(--red);border-radius:16px;padding:10px 12px;margin-top:10px;font-size:14px;color:#111;text-align:left}
 .cfb{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
 .cb{border:0;border-radius:99px;padding:8px 16px;font-size:14px;cursor:pointer;background:#fff;color:#111;box-shadow:0 0 0 1px #eee}
 .cb.red{background:var(--red);color:#fff;box-shadow:none}
@@ -279,8 +280,6 @@ html.dk:not(#z) .np button.on{background:var(--pill);color:var(--tx)}
 html.dk:not(#z) .np2{color:var(--tx)}
 html.cat.dk:not(#z) .np button.on,html.cat.dk:not(#z) .np2{color:var(--pk)}
 html.dk:not(#z) .x,html.dk:not(#z) .ico{color:var(--mu)}
-html.dk:not(#z) .mvl.cfm{background:#3a1d22!important}
-html.dk:not(#z) .cf{background:#3a1d22}
 html.dk:not(#z) .cb{background:var(--pill);color:var(--tx);box-shadow:none}
 html.dk:not(#z) .cb.red{background:var(--red);color:#fff}
 html.dk:not(#z) .chips2 button,html.dk:not(#z) .ctypes button,html.dk:not(#z) .ar{background:var(--pill);border-color:var(--ln);color:var(--mu)}
@@ -523,7 +522,7 @@ function render(){
     let last="";
     list.forEach(x=>{
       if(lm!=="d"&&x.date!==last){last=x.date;h+=`<div class="lab" style="margin-top:18px">${new Date(x.date+"T12:00").toLocaleDateString(LOC(),{weekday:"long",day:"numeric",month:"short"})}</div>`}
-      if(delId===x.id)h+=`<div class="mvl cfm"><span class="g">${t("delTxQ")}</span><span style="display:flex;gap:6px"><button class="cb" data-dn="1">${t("cancel")}</button><button class="cb red" data-dy="${x.id}">${t("del")}</button></span></div>`;
+      if(delId===x.id)h+=`<div class="mvl cfm" style="background:${x.t==="i"?"var(--inc)":col(x.cat)}"><span class="g">${t("delTxQ")}</span><span style="display:flex;gap:6px"><button class="cb" data-dn="1">${t("cancel")}</button><button class="cb red" data-dy="${x.id}">${t("del")}</button></span></div>`;
       else h+=`<div class="mvl" data-e="${x.id}" style="background:${x.t==="i"?"var(--inc)":col(x.cat)}"><span class="e">${cat(x.cat).e}</span><div class="g">${esc(x.note||catName(cat(x.cat)))}${x.note?`<small>${esc(catName(cat(x.cat)))}</small>`:""}</div><b style="color:${x.t==="i"?"var(--incx)":"inherit"}">${x.t==="i"?"+":""}${money(x.amt)}</b><button class="x" data-d="${x.id}">✕</button></div>`;
     });
     if(total>150)h+=`<div class="empty" style="font-size:12px">${t("capped",150)}</div>`;
@@ -680,7 +679,7 @@ function upd(){
 }
 function renderDel(){
   const w=$("delw");w.style.display=editId!==null?"":"none";
-  w.innerHTML=delConf?`<div class="cf"><div>${t("delTxQ")}</div><div class="cfb"><button class="cb" id="dno">${t("cancel")}</button><button class="cb red" id="dyes">${t("del")}</button></div></div>`:`<button class="lnk" id="delb" style="width:100%;margin-top:6px;color:#ff453a">${t("delTx")}</button>`;
+  w.innerHTML=delConf?`<div class="cf rw" style="background:${kind==="i"?"var(--inc)":col(selCat)}"><div>${t("delTxQ")}</div><div class="cfb"><button class="cb" id="dno">${t("cancel")}</button><button class="cb red" id="dyes">${t("del")}</button></div></div>`:`<button class="lnk" id="delb" style="width:100%;margin-top:6px;color:#ff453a">${t("delTx")}</button>`;
 }
 function closeAdd(){$("add").classList.remove("on");editId=null;delConf=false;$("svb").style.display="none";renderDel()}
 function openAdd(x){
@@ -724,7 +723,7 @@ function doDel(id){S.cats=S.cats.filter(x=>x.id!==id)}
 function openCat(type,id,cb){
   const ed=id?S.cats.find(c=>c.id===id):null;if(ed)type=ed.t;
   let selK=ed?ed.k:nextK(),cdel=false;
-  const dw=()=>cdel?`<div class="cf"><div>${t("delCatQ")}</div><div class="cfb"><button class="cb" id="ndn">${t("cancel")}</button><button class="cb red" id="ndy">${t("del")}</button></div></div>`:`<button class="lnk" id="ndl" style="width:100%;margin-top:8px;color:#ff453a">${t("delCat")}</button>`;
+  const dw=()=>cdel?`<div class="cf rw" style="background:${palC(selK)}"><div>${t("delCatQ")}</div><div class="cfb"><button class="cb" id="ndn">${t("cancel")}</button><button class="cb red" id="ndy">${t("del")}</button></div></div>`:`<button class="lnk" id="ndl" style="width:100%;margin-top:8px;color:#ff453a">${t("delCat")}</button>`;
   $("ncd").innerHTML=`<h3>${ed?t("editCat"):t(type==="g"?"newCatG":"newCatI")}</h3>
   <div style="display:flex;gap:8px"><input class="inp2" id="ne" maxlength="8" placeholder="😀" value="${ed?esc(ed.e):""}" style="font-size:28px;text-align:center;width:76px"><input class="inp2" id="nn" placeholder="${t("name")}" maxlength="20" value="${ed?esc(catName(ed)):""}" style="flex:1;min-width:0"></div>
   <div style="font-size:12px;color:var(--mu);margin:10px 2px 0">${t("pickEmoji")}</div>
@@ -753,7 +752,7 @@ function openCat(type,id,cb){
   $("ncd").showModal();if(!ed)setTimeout(()=>$("nn").focus(),50);
 }
 function catSec(ty,ti){return `<div class="set" style="border:0;margin-top:6px"><b>${ti}</b><button class="lnk" id="sn-${ty}">${t("newBtn")}</button></div>`+S.cats.filter(c=>c.t===ty).map(c=>delCatId===c.id
-  ?`<div class="cf" style="margin:6px 0"><div>${c.e} <b>${esc(catName(c))}</b><br>${t("delCatQ")}</div><div class="cfb"><button class="cb" data-cx="1">${t("cancel")}</button><button class="cb red" data-cy="${c.id}">${t("del")}</button></div></div>`
+  ?`<div class="cf rw" style="margin:6px 0;background:${palC(c.k||0)}"><div>${c.e} <b>${esc(catName(c))}</b><br>${t("delCatQ")}</div><div class="cfb"><button class="cb" data-cx="1">${t("cancel")}</button><button class="cb red" data-cy="${c.id}">${t("del")}</button></div></div>`
   :`<div class="set" data-ec="${c.id}" style="cursor:pointer"><span>${c.e} ${esc(catName(c))}</span><span><button class="x" data-kc="${c.id}" aria-label="${t("colorAria")}" style="color:${VIV[(c.k||0)%VIV.length]};font-size:20px">●</button><button class="x" data-ec="${c.id}">✎</button><button class="x" data-dc="${c.id}">✕</button></span></div>`).join("")}
 
 /* ---------- respaldo ---------- */
